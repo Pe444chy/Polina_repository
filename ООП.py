@@ -3,16 +3,23 @@ import os
 from colorama import init
 from colorama import Fore, Back, Style
 init()
- 
-class Car(): 
+class Sostoyanie:
+    def Whole(self):
+        self.sostoyanie = 'Целая'
+    def Broken(self):
+        self.sostoyanie = 'Побитая'
 
-    def __init__(self, marka=None, color=None, model=None, nomer = None):
+class Car(Sostoyanie):
+
+    def __init__(self, marka=None, color=None, model=None, nomer = None, passagiri = None, god = None):
         self.marka = marka
         self.model = model
         self.color = color
         self.nomer = nomer
-    
-    
+        self.passagiri = passagiri
+        self.god = god
+        self.sostoyanie = 'целая'
+
 class Mainvivod():
     def __init__(self):
         self.Vivod()
@@ -58,9 +65,12 @@ class Mainvivod():
                             print('2. Изменить или добавить модель')
                             print('3. Изменить или добавить цвет')
                             print('4. Изменить или добавить номер')
+                            print('5. Количество пассажирских мест')
+                            print('6. Изменить или добавить год выпуска машины')
+                            print('7. Изменить или добавить состояние машины')
                             print('0. Выход')
                             what1 = input()
-                            if (what1 == '1') or (what1 == '2') or (what1 == '3') or (what1 == '4') or (what1 == '0'):
+                            if (what1 == '1') or (what1 == '2') or (what1 == '3') or (what1 == '4') or (what1 == '0') or (what1 == '5') or (what1 == '6') or (what1 == '7'):
                                 i = int(i) - 1
                                 if what1 == '1':
                                     print(Fore.CYAN + 'Введите марку')
@@ -77,6 +87,22 @@ class Mainvivod():
                                 if what1 == '4':
                                     print(Fore.CYAN + 'Введите номер')
                                     autocar[i].nomer = input()
+                                if what1 == '5':
+                                    print(Fore.CYAN + 'Введите количество пассажирских мест')
+                                    autocar[i].nomer = input()
+                                if what1 == '6':
+                                    print(Fore.CYAN + 'Введите год выпуска машины')
+                                    autocar[i].god = input()
+                                what2 = ''
+                                if what1 == '7':
+                                    while what2== '':
+                                        print(Fore.CYAN + '1. Целая')
+                                        print(Fore.CYAN + '2. Побитая')
+                                        what2 = input()
+                                        if what2 == '1':
+                                            autocar[i].Whole()
+                                        if what2 == '2':
+                                            autocar[i].Broken()
                             else:
                                 neverno()
                             pickle.dump(autocar, open('autocar.pickle', 'wb'))
@@ -108,6 +134,12 @@ class Mainvivod():
                                 print(Fore.MAGENTA + 'Цвет -', autocar[i].color)
                             if autocar[i].nomer != None:
                                 print(Fore.MAGENTA + 'Номер -', autocar[i].nomer)
+                            if autocar[i].passagiri != None:
+                                print(Fore.MAGENTA + 'Количество пассажирских мест -', autocar[i].passagiri)
+                            if autocar[i].god != None:
+                                print(Fore.MAGENTA + 'Год выпуска машины -', autocar[i].god)
+                            if autocar[i].sostoyanie != None:
+                                print(Fore.MAGENTA + 'Состояние машины -', autocar[i].sostoyanie)
                             pickle.dump(autocar, open('autocar.pickle', 'wb'))
                     else:
                         neverno()
