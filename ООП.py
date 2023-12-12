@@ -89,7 +89,7 @@ class Mainvivod():
                                     autocar[i].nomer = input()
                                 if what1 == '5':
                                     print(Fore.CYAN + 'Введите количество пассажирских мест')
-                                    autocar[i].nomer = input()
+                                    autocar[i].passagiri = input()
                                 if what1 == '6':
                                     print(Fore.CYAN + 'Введите год выпуска машины')
                                     autocar[i].god = input()
